@@ -4,10 +4,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Swift Cart",
-  description: "A store for all your favorite products",
+  title: "Timeline",
+  description: "A React UI for a timeline of posts",
   icons: {
     icon: "/favicon.ico",
   },
