@@ -19,7 +19,9 @@ const Post = ({ post }: PostProps) => {
   const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
+    fetch(`https://jsonplaceholder.typicode.com/users`, {
+      next: { revalidate: 0 },
+    })
       .then((response) => response.json())
       .then((data) => {
         const postUser = data.find(
