@@ -1,10 +1,19 @@
 "use client";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 
 interface CommentProps {
   postId: number;
+  showComments: boolean;
+  setShowComments: any;
 }
-const Comments = ({ postId }: CommentProps) => {
+const Comments = ({ postId, showComments, setShowComments }: CommentProps) => {
   const [comments, setComments] = useState<[] | any>([]);
 
   useEffect(() => {
@@ -19,14 +28,18 @@ const Comments = ({ postId }: CommentProps) => {
   }, [postId]);
 
   return (
-    <div className="comments">
-      {comments.map((comment: any) => (
-        <div key={comment.id} className="comment">
-          <h4>{comment.name}</h4>
-          <p>{comment.body}</p>
-        </div>
-      ))}
-    </div>
+    <Dialog open={showComments} onOpenChange={() => setShowComments(false)}>
+      <DialogContent>
+        <DialogHeader>
+          {comments.map((comment: any) => (
+            <div key={comment.id}>
+              <DialogTitle>{comment.name}</DialogTitle>
+              <DialogDescription>{comment.body}</DialogDescription>
+            </div>
+          ))}
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
 };
 

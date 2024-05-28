@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import Comments from "./Comments";
 
@@ -29,7 +30,7 @@ const Post = ({ post }: PostProps) => {
   }, [post.userId]);
 
   return (
-    <>
+    <div>
       <Card>
         <CardHeader>
           <CardTitle>{post.title}</CardTitle>
@@ -39,20 +40,22 @@ const Post = ({ post }: PostProps) => {
           <p>{post.body}</p>
         </CardContent>
         <CardFooter>
-          <p>Card Footer</p>
+          <p>
+            <MessageCircle
+              className="cursor-pointer"
+              onClick={() => setShowComments(!showComments)}
+            />
+          </p>
         </CardFooter>
       </Card>
-
-      <div className="post">
-        <h2>{post.title}</h2>
-        <h3>by {user.name || ""}</h3>
-        <p>{post.body}</p>
-        <button onClick={() => setShowComments(!showComments)}>
-          {showComments ? "Hide Comments" : "Show Comments"}
-        </button>
-        {showComments && <Comments postId={post.id} />}
-      </div>
-    </>
+      {showComments && (
+        <Comments
+          postId={post.id}
+          showComments={showComments}
+          setShowComments={setShowComments}
+        />
+      )}
+    </div>
   );
 };
 
