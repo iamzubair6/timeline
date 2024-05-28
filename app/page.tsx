@@ -7,9 +7,7 @@ const Timeline = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts`, {
-      next: { revalidate: 0 },
-    })
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => response.json())
       .then((data) =>
         setPosts(

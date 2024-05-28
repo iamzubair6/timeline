@@ -17,9 +17,7 @@ const Comments = ({ postId, showComments, setShowComments }: CommentProps) => {
   const [comments, setComments] = useState<[] | any>([]);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/comments`, {
-      next: { revalidate: 0 },
-    })
+    fetch(`https://jsonplaceholder.typicode.com/comments`)
       .then((response) => response.json())
       .then((data) => {
         const postComments = data.filter(
